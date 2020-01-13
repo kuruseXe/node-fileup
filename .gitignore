@@ -1,0 +1,4 @@
+# node-fileup
+node_modules/
+uploads/
+conf/config.js
