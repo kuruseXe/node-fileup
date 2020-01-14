@@ -1,0 +1,4 @@
+exports.flist = {
+    base : '/data/devusr/www/html',
+    hpname : 'ni10'
+}
