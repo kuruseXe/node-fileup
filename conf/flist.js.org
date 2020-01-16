@@ -1,0 +1,4 @@
+exports.flist = {
+    base : 'basedir',
+    hpname : 'hpname'
+}
