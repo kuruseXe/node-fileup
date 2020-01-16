@@ -16,6 +16,12 @@
         let destDir = './' + req.file.destination;
         if (req.file.originalname.match(/\.(csv|json)$/) !== null) {
             destDir = list.flist.base + '/' + list.flist.hpname + '/data/';
+        } else if (req.file.originalname.match(/\.css$/) !== null) {
+            destDir = list.flist.base + '/' + list.flist.hpname + '/css/';
+        } else if (req.file.originalname.match(/\.js$/) !== null) {
+            destDir = list.flist.base + '/' + list.flist.hpname + '/js/';
+        } else if (req.file.originalname.match(/\.html$/) !== null) {
+            destDir = list.flist.base + '/' + list.flist.hpname + '/';
         }
         const strpath = './' + req.file.path;
         const detstpath = destDir + req.file.originalname;
