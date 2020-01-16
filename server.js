@@ -5,7 +5,7 @@
           basicAuth = require('basic-auth-connect'),
           fs = require('fs'),
           config = require('./conf/config.js'),
-          flist = require('./conf/flist.js'),
+          list = require('./conf/flist.js'),
           upload = multer({ dest: 'uploads/' }),
           app = express();
     
@@ -15,7 +15,7 @@
         console.log(req.file);
         let destDir = './' + req.file.destination;
         if (req.file.originalname.match(/\.(csv|json)$/) !== null) {
-            destDir = flist.base + '/' + flist.hpname + '/data/';
+            destDir = list.flist.base + '/' + list.flist.hpname + '/data/';
         }
         const strpath = './' + req.file.path;
         const detstpath = destDir + req.file.originalname;
