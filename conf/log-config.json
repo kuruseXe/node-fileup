@@ -1,0 +1,43 @@
+{
+    "appenders": {
+        "ConsoleLogAppender": {
+            "type": "console"
+        },
+        "SystemLogAppender": {
+            "type":     "file",
+            "filename": "./logs/system.log",
+            "maxLogSize": 5000000,
+            "backups": 3
+        },
+        "AccessLogAppender": {
+            "type":     "dateFile",
+            "filename": "./logs/access.log",
+            "pattern":  "-yyyy-MM-dd",
+            "daysToKeep": 7
+        },
+        "ErrorLogAppender": {
+            "type":     "dateFile",
+            "filename": "./logs/error.log",
+            "pattern":  "-yyyy-MM-dd",
+            "daysToKeep": 7
+        }
+    },
+    "categories": {
+        "default": {
+            "appenders": ["ConsoleLogAppender"],
+            "level": "all"
+        },
+        "system": {
+            "appenders": ["SystemLogAppender"],
+            "level": "info"
+        },
+        "access": {
+            "appenders": ["AccessLogAppender"],
+            "level": "info"
+        },
+        "error": {
+            "appenders": ["ErrorLogAppender"],
+            "level": "info"
+        }
+    }
+}

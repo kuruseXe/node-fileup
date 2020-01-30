@@ -1,5 +1,6 @@
 # node-fileup
 node_modules/
 uploads/
+logs/*.log*
 conf/config.js
 conf/flist.js
