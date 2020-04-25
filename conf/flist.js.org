@@ -1,4 +1,10 @@
 exports.flist = {
-    base : 'basedir',
-    hpname : 'hpname'
+    username : {
+        base : 'basedirpath',
+        hpname : 'hpname',
+        html : '',
+        js : 'js',
+        css : 'css',
+        data : 'data'
+    }
 }

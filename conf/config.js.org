@@ -1,6 +1,5 @@
 exports.port = 50505;
 exports.auth = {
-    name    : 'admin',
-    passwd  : 'admin#'
+    name    : 'passwd'
 };
 

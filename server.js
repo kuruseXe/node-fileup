@@ -1,4 +1,4 @@
-(function () {
+(() => {
     "use strict"
     const express = require('express'),
           multer  = require('multer'),
@@ -18,20 +18,32 @@
     
     app.use(log4js.connectLogger(acsLogger));
 
-    app.use(basicAuth(config.auth.name, config.auth.passwd));
+    app.use(basicAuth((user, pass) => {
+        return config.auth[user] && config.auth[user] === pass;
+    }));
 
     app.post('/', upload.single('data'), (req, res) => {
         acsLogger.info(req.connection.remoteAddress
                     + ' - - \"RECIVE / FILE/' + req.file.originalname + '\"');
+        acsLogger.info("user : " + req.user);
+        let user = req.user;
         let destDir = './' + req.file.destination;
         if (req.file.originalname.match(/\.(csv|json)$/) !== null) {
-            destDir = list.flist.base + '/' + list.flist.hpname + '/data/';
+            destDir = list.flist[user].base
+                + '/' + list.flist[user].hpname 
+                + '/' + list.flist[user].data + '/';
         } else if (req.file.originalname.match(/\.css$/) !== null) {
-            destDir = list.flist.base + '/' + list.flist.hpname + '/css/';
+            destDir = list.flist[user].base 
+                + '/' + list.flist[user].hpname 
+                + '/' + list.flist[user].css + '/';
         } else if (req.file.originalname.match(/\.js$/) !== null) {
-            destDir = list.flist.base + '/' + list.flist.hpname + '/js/';
+            destDir = list.flist[user].base 
+                + '/' + list.flist[user].hpname 
+                + '/' + list.flist[user].js + '/';
         } else if (req.file.originalname.match(/\.html$/) !== null) {
-            destDir = list.flist.base + '/' + list.flist.hpname + '/';
+            destDir = list.flist[user].base 
+                + '/' + list.flist[user].hpname 
+                + '/';
         }
         const strpath = './' + req.file.path;
         const detstpath = destDir + req.file.originalname;
